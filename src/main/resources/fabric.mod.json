@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "breakabone",
+  "id": "bodyshuffle",
   "version": "${version}",
-  "name": "Break a Bone",
+  "name": "Body Shuffle",
   "description": "A mod adding a body part toggle and randomly mutating your body every few minutes.",
   "authors": [
     "vini2003"
@@ -11,21 +11,21 @@
     "email": "contact@vini2003.xyz"
   },
   "license": "MIT",
-  "icon": "assets/breakabone/icon.png",
+  "icon": "assets/bodyshuffle/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "vini2003.xyz.breakabone.BreakABoneClient"
+      "vini2003.xyz.bodyshuffle.BodyShuffleClient"
     ],
     "main": [
-      "vini2003.xyz.breakabone.BreakABone"
+      "vini2003.xyz.bodyshuffle.BodyShuffle"
     ],
     "cardinal-components": [
-      "vini2003.xyz.breakabone.registry.common.BreakABoneComponents"
+      "vini2003.xyz.bodyshuffle.registry.common.BodyShuffleComponents"
     ]
   },
   "mixins": [
-    "breakabone.mixins.json"
+    "bodyshuffle.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.11.1",
@@ -34,8 +34,8 @@
   },
   "custom": {
     "cardinal-components": [
-      "breakabone:body_parts",
-      "breakabone:timer"
+      "bodyshuffle:body_parts",
+      "bodyshuffle:timer"
     ]
   }
 }

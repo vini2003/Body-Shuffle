@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "vini2003.xyz.bodyshuffle.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "common.LivingEntityMixin",
+    "common.MinecraftClientMixin",
+    "common.PlayerEntityMixin"
+  ],
+  "client": [
+    "client.HeldItemRendererMixin",
+    "client.LivingEntityRendererMixin",
+    "client.PlayerEntityRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
