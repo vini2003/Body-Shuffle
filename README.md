@@ -10,4 +10,4 @@ This mod randomly mutates your body every few minutes, and allows you to toggle 
 
 # Using
 
-`C` opens the body part selector.
+`V` opens the body part selector.
