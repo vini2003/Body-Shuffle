@@ -1,5 +1,6 @@
 package vini2003.xyz.bodyshuffle.mixin.client;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
@@ -7,7 +8,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import vini2003.xyz.bodyshuffle.client.utilities.BodyShuffleClientUtilities;
 import vini2003.xyz.bodyshuffle.common.component.BodyPartComponent;
 import vini2003.xyz.bodyshuffle.registry.client.BodyShuffleShaders;
 import vini2003.xyz.bodyshuffle.registry.common.BodyShuffleComponents;
@@ -16,7 +16,7 @@ import vini2003.xyz.bodyshuffle.registry.common.BodyShuffleComponents;
 public class PlayerEntityRendererMixin {
 	@Inject(at = @At("RETURN"), method = "setModelPose(Lnet/minecraft/client/network/AbstractClientPlayerEntity;)V")
 	void bodyshuffle_setModelPose(AbstractClientPlayerEntity abstractClientPlayerEntity, CallbackInfo ci) {
-		BodyPartComponent bodyParts = BodyShuffleComponents.BODY_PARTS.get(BodyShuffleClientUtilities.getPlayer());
+		BodyPartComponent bodyParts = BodyShuffleComponents.BODY_PARTS.get(abstractClientPlayerEntity);
 		
 		PlayerEntityModel model = ((PlayerEntityRenderer) (Object) this).getModel();
 		
@@ -38,6 +38,8 @@ public class PlayerEntityRendererMixin {
 		model.leftLeg.visible = bodyParts.hasLeftLeg();
 		model.leftPantLeg.visible = bodyParts.hasLeftLeg();
 		
-		BodyShuffleShaders.enableBlur = !bodyParts.hasHead() && bodyParts.hasBlur();
+		if (abstractClientPlayerEntity.getUuid().equals(MinecraftClient.getInstance().player.getUuid())) {
+			BodyShuffleShaders.enableBlur = !bodyParts.hasHead();
+		}
 	}
 }

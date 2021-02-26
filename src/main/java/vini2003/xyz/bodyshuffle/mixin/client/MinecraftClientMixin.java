@@ -1,4 +1,4 @@
-package vini2003.xyz.bodyshuffle.mixin.common;
+package vini2003.xyz.bodyshuffle.mixin.client;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;

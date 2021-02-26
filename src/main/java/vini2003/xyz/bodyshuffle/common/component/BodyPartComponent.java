@@ -15,26 +15,6 @@ public class BodyPartComponent implements PlayerComponent<BodyPartComponent>, Au
 	private boolean head = true;
 	private boolean torso = true;
 	
-	private boolean blur = true;
-	
-	private boolean randomizeLeftArm = true;
-	private boolean randomizeRightArm = true;
-	private boolean randomizeLeftLeg = true;
-	private boolean randomizeRightLeg = true;
-	private boolean randomizeHead = true;
-	private boolean randomizeTorso = true;
-	
-	private boolean speedIncrease = true;
-	private boolean speedDecrease = true;
-	
-	private boolean jumpIncrease = true;
-	private boolean jumpDecrease = true;
-	
-	private boolean singleHandLimitations = true;
-	private boolean noHandLimitations = true;
-	
-	private boolean climbingLimitations = true;
-	
 	private final PlayerEntity player;
 	
 	public BodyPartComponent(PlayerEntity player) {
@@ -49,26 +29,6 @@ public class BodyPartComponent implements PlayerComponent<BodyPartComponent>, Au
 		setRightLeg(compoundTag.getBoolean("RightLeg"));
 		setHead(compoundTag.getBoolean("Head"));
 		setTorso(compoundTag.getBoolean("Torso"));
-		
-		setBlur(compoundTag.getBoolean("Blur"));
-		
-		setRandomizeLeftArm(compoundTag.getBoolean("RandomizeLeftArm"));
-		setRandomizeRightArm(compoundTag.getBoolean("RandomizeRightArm"));
-		setRandomizeLeftLeg(compoundTag.getBoolean("RandomizeLeftLeg"));
-		setRandomizeRightLeg(compoundTag.getBoolean("RandomizeRightLeg"));
-		setRandomizeHead(compoundTag.getBoolean("RandomizeHead"));
-		setRandomizeTorso(compoundTag.getBoolean("RandomizeTorso"));
-		
-		setSpeedIncrease(compoundTag.getBoolean("SpeedIncrease"));
-		setSpeedDecrease(compoundTag.getBoolean("SpeedDecrease"));
-		
-		setJumpIncrease(compoundTag.getBoolean("JumpIncrease"));
-		setJumpDecrease(compoundTag.getBoolean("JumpDecrease"));
-		
-		setSingleHandLimitations(compoundTag.getBoolean("SingleHandLimitations"));
-		setNoHandLimitations(compoundTag.getBoolean("NoHandLimitations"));
-		
-		setClimbingLimitations(compoundTag.getBoolean("ClimbingLimitations"));
 	}
 	
 	@Override
@@ -79,26 +39,6 @@ public class BodyPartComponent implements PlayerComponent<BodyPartComponent>, Au
 		compoundTag.putBoolean("RightLeg", rightLeg);
 		compoundTag.putBoolean("Head", head);
 		compoundTag.putBoolean("Torso", torso);
-		
-		compoundTag.putBoolean("Blur", blur);
-		
-		compoundTag.putBoolean("RandomizeLeftArm", randomizeLeftArm);
-		compoundTag.putBoolean("RandomizeRightArm", randomizeRightArm);
-		compoundTag.putBoolean("RandomizeLeftLeg", randomizeLeftLeg);
-		compoundTag.putBoolean("RandomizeRightLeg", randomizeRightLeg);
-		compoundTag.putBoolean("RandomizeHead", randomizeHead);
-		compoundTag.putBoolean("RandomizeTorso", randomizeTorso);
-		
-		compoundTag.putBoolean("SpeedIncrease", speedIncrease);
-		compoundTag.putBoolean("SpeedDecrease", speedDecrease);
-		
-		compoundTag.putBoolean("JumpIncrease", jumpIncrease);
-		compoundTag.putBoolean("JumpDecrease", jumpDecrease);
-		
-		compoundTag.putBoolean("SingleHandLimitations", singleHandLimitations);
-		compoundTag.putBoolean("NoHandLimitations", noHandLimitations);
-		
-		compoundTag.putBoolean("ClimbingLimitations", climbingLimitations);
 	}
 	
 	public void updateBoundingBox() {
@@ -166,118 +106,6 @@ public class BodyPartComponent implements PlayerComponent<BodyPartComponent>, Au
 	public void setTorso(boolean torso) {
 		this.torso = torso;
 		updateBoundingBox();
-	}
-	
-	public boolean hasBlur() {
-		return blur;
-	}
-	
-	public void setBlur(boolean blur) {
-		this.blur = blur;
-	}
-	
-	public boolean shouldRandomizeLeftArm() {
-		return randomizeLeftArm;
-	}
-	
-	public void setRandomizeLeftArm(boolean randomizeLeftArm) {
-		this.randomizeLeftArm = randomizeLeftArm;
-	}
-	
-	public boolean shouldRandomizeRightArm() {
-		return randomizeRightArm;
-	}
-	
-	public void setRandomizeRightArm(boolean randomizeRightArm) {
-		this.randomizeRightArm = randomizeRightArm;
-	}
-	
-	public boolean shouldRandomizeLeftLeg() {
-		return randomizeLeftLeg;
-	}
-	
-	public void setRandomizeLeftLeg(boolean randomizeLeftLeg) {
-		this.randomizeLeftLeg = randomizeLeftLeg;
-	}
-	
-	public boolean shouldRandomizeRightLeg() {
-		return randomizeRightLeg;
-	}
-	
-	public void setRandomizeRightLeg(boolean randomizeRightLeg) {
-		this.randomizeRightLeg = randomizeRightLeg;
-	}
-	
-	public boolean shouldRandomizeHead() {
-		return randomizeHead;
-	}
-	
-	public void setRandomizeHead(boolean randomizeHead) {
-		this.randomizeHead = randomizeHead;
-	}
-	
-	public boolean shouldRandomizeTorso() {
-		return randomizeTorso;
-	}
-	
-	public void setRandomizeTorso(boolean randomizeTorso) {
-		this.randomizeTorso = randomizeTorso;
-	}
-	
-	public boolean hasSpeedIncrease() {
-		return speedIncrease;
-	}
-	
-	public void setSpeedIncrease(boolean speedIncrease) {
-		this.speedIncrease = speedIncrease;
-	}
-	
-	public boolean hasSpeedDecrease() {
-		return speedDecrease;
-	}
-	
-	public void setSpeedDecrease(boolean speedDecrease) {
-		this.speedDecrease = speedDecrease;
-	}
-	
-	public boolean hasJumpIncrease() {
-		return jumpIncrease;
-	}
-	
-	public void setJumpIncrease(boolean jumpIncrease) {
-		this.jumpIncrease = jumpIncrease;
-	}
-	
-	public boolean hasJumpDecrease() {
-		return jumpDecrease;
-	}
-	
-	public void setJumpDecrease(boolean jumpDecrease) {
-		this.jumpDecrease = jumpDecrease;
-	}
-	
-	public boolean hasSingleHandLimitations() {
-		return singleHandLimitations;
-	}
-	
-	public void setSingleHandLimitations(boolean singleHandLimitations) {
-		this.singleHandLimitations = singleHandLimitations;
-	}
-	
-	public boolean hasNoHandLimitations() {
-		return noHandLimitations;
-	}
-	
-	public void setNoHandLimitations(boolean noHandLimitations) {
-		this.noHandLimitations = noHandLimitations;
-	}
-	
-	public boolean hasClimbingLimitations() {
-		return climbingLimitations;
-	}
-	
-	public void setClimbingLimitations(boolean climbingLimitations) {
-		this.climbingLimitations = climbingLimitations;
 	}
 	
 	public float getHeight(EntityDimensions dimensions) {

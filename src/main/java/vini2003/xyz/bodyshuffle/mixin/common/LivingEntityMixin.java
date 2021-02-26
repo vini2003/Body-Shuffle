@@ -22,32 +22,28 @@ public abstract class LivingEntityMixin {
 		if ((Object) this instanceof PlayerEntity) {
 			BodyPartComponent bodyParts = BodyShuffleComponents.BODY_PARTS.get(this);
 			
-			if (bodyParts.hasJumpIncrease()) {
-				if (!bodyParts.hasHead() && !bodyParts.hasTorso() && !bodyParts.hasLeftArm() && !bodyParts.hasRightArm()) {
-					float multiplier = 1F;
-					
-					if (bodyParts.hasLeftLeg()) multiplier += 0.125F;
-					if (bodyParts.hasRightLeg()) multiplier += 0.125F;
-					
-					cir.setReturnValue(cir.getReturnValueF() * multiplier);
-					cir.cancel();
-					
-					return;
-				}
+			if (!bodyParts.hasHead() && !bodyParts.hasTorso() && !bodyParts.hasLeftArm() && !bodyParts.hasRightArm()) {
+				float multiplier = 1F;
+				
+				if (bodyParts.hasLeftLeg()) multiplier += 0.125F;
+				if (bodyParts.hasRightLeg()) multiplier += 0.125F;
+				
+				cir.setReturnValue(cir.getReturnValueF() * multiplier);
+				cir.cancel();
+				
+				return;
 			}
 			
-			if (bodyParts.hasJumpDecrease()) {
-				if (!bodyParts.hasHead() && !bodyParts.hasTorso() && !bodyParts.hasLeftLeg() && !bodyParts.hasRightLeg()) {
-					float multiplier = 1F;
-					
-					if (bodyParts.hasLeftArm()) multiplier -= 0.125F;
-					if (bodyParts.hasRightArm()) multiplier -= 0.125F;
-					
-					cir.setReturnValue(cir.getReturnValueF() * multiplier);
-					cir.cancel();
-					
-					return;
-				}
+			if (!bodyParts.hasHead() && !bodyParts.hasTorso() && !bodyParts.hasLeftLeg() && !bodyParts.hasRightLeg()) {
+				float multiplier = 1F;
+				
+				if (bodyParts.hasLeftArm()) multiplier -= 0.125F;
+				if (bodyParts.hasRightArm()) multiplier -= 0.125F;
+				
+				cir.setReturnValue(cir.getReturnValueF() * multiplier);
+				cir.cancel();
+				
+				return;
 			}
 		}
 	}
@@ -57,11 +53,9 @@ public abstract class LivingEntityMixin {
 		if ((Object) this instanceof PlayerEntity) {
 			BodyPartComponent bodyParts = BodyShuffleComponents.BODY_PARTS.get(this);
 			
-			if (bodyParts.hasClimbingLimitations()) {
-				if (!bodyParts.hasAnyLeg() && !bodyParts.hasAnyArm()) {
-					cir.setReturnValue(false);
-					cir.cancel();
-				}
+			if (!bodyParts.hasAnyLeg() && !bodyParts.hasAnyArm()) {
+				cir.setReturnValue(false);
+				cir.cancel();
 			}
 		}
 	}
@@ -71,16 +65,14 @@ public abstract class LivingEntityMixin {
 		if ((Object) this instanceof PlayerEntity && isClimbing()) {
 			BodyPartComponent bodyParts = BodyShuffleComponents.BODY_PARTS.get(this);
 			
-			if (bodyParts.hasClimbingLimitations()) {
-				PlayerEntity player = (PlayerEntity) (Object) this;
-				
-				if (!bodyParts.hasAnyArm()) {
-					player.setVelocity(player.getVelocity().getX(), player.getVelocity().getY() * 0.75F, player.getVelocity().getZ());
-				}
-				
-				if (!bodyParts.hasAnyLeg()) {
-					player.setVelocity(player.getVelocity().getX(), player.getVelocity().getY() * 0.75F, player.getVelocity().getZ());
-				}
+			PlayerEntity player = (PlayerEntity) (Object) this;
+			
+			if (!bodyParts.hasAnyArm()) {
+				player.setVelocity(player.getVelocity().getX(), player.getVelocity().getY() * 0.75F, player.getVelocity().getZ());
+			}
+			
+			if (!bodyParts.hasAnyLeg()) {
+				player.setVelocity(player.getVelocity().getX(), player.getVelocity().getY() * 0.75F, player.getVelocity().getZ());
 			}
 		}
 	}

@@ -5,7 +5,9 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import vini2003.xyz.bodyshuffle.BodyShuffle;
 import vini2003.xyz.bodyshuffle.common.component.BodyPartComponent;
 import vini2003.xyz.bodyshuffle.common.component.TimerComponent;
 import vini2003.xyz.bodyshuffle.common.screenhandler.BodyPartSelectorScreenHandler;
@@ -17,9 +19,13 @@ public class BodyShuffleCallbacks {
 			
 			Block block = world.getBlockState(blockHitResult.getBlockPos()).getBlock();
 			
-			if (bodyParts.hasSingleHandLimitations() && block == Blocks.CRAFTING_TABLE && (!bodyParts.hasLeftArm() || !bodyParts.hasRightArm())) {
+			if (!bodyParts.hasLeftArm() && !bodyParts.hasRightArm()) {
 				return ActionResult.FAIL;
-			} else if (bodyParts.hasNoHandLimitations() && !bodyParts.hasAnyArm()) {
+			}
+			
+			if (block == Blocks.CRAFTING_TABLE && (!bodyParts.hasLeftArm() || !bodyParts.hasRightArm())) {
+				return ActionResult.FAIL;
+			} else if ((hand == Hand.MAIN_HAND && !bodyParts.hasRightArm() && !playerEntity.getStackInHand(hand).isEmpty()) || (hand == Hand.OFF_HAND && !bodyParts.hasLeftArm())) {
 				return ActionResult.FAIL;
 			}
 			
@@ -30,23 +36,17 @@ public class BodyShuffleCallbacks {
 			server.getPlayerManager().getPlayerList().forEach(player -> {
 				TimerComponent timer = BodyShuffleComponents.TIMER.get(player);
 				
-				if (timer.hasMinutes(5) && !(player.currentScreenHandler instanceof BodyPartSelectorScreenHandler)) {
+				if (BodyShuffle.timerEnabled && timer.hasSeconds(BodyShuffle.timerSeconds) && !(player.currentScreenHandler instanceof BodyPartSelectorScreenHandler)) {
 					timer.reset();
 					
 					BodyPartComponent bodyParts = BodyShuffleComponents.BODY_PARTS.get(player);
 					
-					if (bodyParts.shouldRandomizeHead())
-						bodyParts.setHead(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
-					if (bodyParts.shouldRandomizeTorso())
-						bodyParts.setTorso(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
-					if (bodyParts.shouldRandomizeLeftArm())
-						bodyParts.setLeftArm(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
-					if (bodyParts.shouldRandomizeRightArm())
-						bodyParts.setRightArm(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
-					if (bodyParts.shouldRandomizeLeftLeg())
-						bodyParts.setLeftLeg(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
-					if (bodyParts.shouldRandomizeRightLeg())
-						bodyParts.setRightLeg(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
+					bodyParts.setHead(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
+					bodyParts.setTorso(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
+					bodyParts.setLeftArm(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
+					bodyParts.setRightArm(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
+					bodyParts.setLeftLeg(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
+					bodyParts.setRightLeg(server.getWorld(World.OVERWORLD).getRandom().nextBoolean());
 					
 					BodyShuffleComponents.BODY_PARTS.sync(player);
 				}

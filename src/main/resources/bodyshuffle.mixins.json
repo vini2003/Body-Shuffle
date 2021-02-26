@@ -5,13 +5,14 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "common.LivingEntityMixin",
-    "common.MinecraftClientMixin",
     "common.PlayerEntityMixin"
   ],
   "client": [
     "client.HeldItemRendererMixin",
     "client.LivingEntityRendererMixin",
-    "client.PlayerEntityRendererMixin"
+    "client.PlayerEntityRendererMixin",
+    "client.ClientPlayerInteractionManagerMixin",
+    "client.MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1

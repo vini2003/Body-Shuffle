@@ -8,7 +8,7 @@ import vini2003.xyz.blade.client.utilities.Drawings;
 import vini2003.xyz.blade.client.utilities.Layers;
 import vini2003.xyz.blade.common.utilities.Networks;
 import vini2003.xyz.blade.common.widget.base.AbstractWidget;
-import vini2003.xyz.bodyshuffle.client.utilities.BodyShuffleClientUtilities;
+import vini2003.xyz.bodyshuffle.client.utilities.ClientUtilities;
 import vini2003.xyz.bodyshuffle.common.miscellaneous.BodyPart;
 import vini2003.xyz.bodyshuffle.registry.common.BodyShuffleComponents;
 
@@ -31,7 +31,7 @@ public class BodyPartWidget extends AbstractWidget {
 		
 		if (!getHandler().getClient() || getFocused()) {
 			if (getHandler().getClient()) {
-				BodyShuffleClientUtilities.playButtonSound();
+				ClientUtilities.playButtonSound();
 			}
 			
 			setEnabled(!isEnabled());

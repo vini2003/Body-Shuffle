@@ -22,8 +22,7 @@ public class HeldItemRendererMixin {
 		if (entity instanceof PlayerEntity) {
 			BodyPartComponent bodyParts = BodyShuffleComponents.BODY_PARTS.get(entity);
 			
-			Hand hand = entity.preferredHand;
-			if (hand == null) hand = Hand.MAIN_HAND;
+			Hand hand = leftHanded ? Hand.OFF_HAND : Hand.MAIN_HAND;
 			
 			if ((!bodyParts.hasLeftArm() && hand == Hand.OFF_HAND) || (!bodyParts.hasRightArm() && hand == Hand.MAIN_HAND)) {
 				ci.cancel();

@@ -1,6 +1,6 @@
 # Body Shuffle
 
-This mod randomly mutates your body every few minutes, and allows you to toggle them at will.
+This mod randomly mutates your body parts every few minutes, and allows you to toggle them at will.
 
 # Installing
 
